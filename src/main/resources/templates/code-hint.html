@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiDay IJR</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="institution-header">
+        <img src="/images/logo.png" alt="Instituto Jorge Robledo Logo">
+        <div class="institution-label">Instituto Jorge Robledo - Colegio laico, mixto y privado</div>
+    </div>
+    <div class="card">
+        <h1>Puzzle <span th:text="${puzzleNumber}">1</span>: Find the Code</h1>
+
+        <div class="hint-box">
+            <h2>Location Hint:</h2>
+            <p th:text="${locationHint}">Look for the code in a specific location.</p>
+        </div>
+
+        <p>Find the code in the location described above and proceed to the next step.</p>
+
+        <a href="/code-input" class="primary-button">Enter Code</a>
+    </div>
+</div>
+</body>
+</html>

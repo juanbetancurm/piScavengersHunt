@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiDay IJR</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="institution-header">
+        <img src="/images/logo.png" alt="Instituto Jorge Robledo Logo">
+        <div class="institution-label">Instituto Jorge Robledo - Colegio laico, mixto y privado</div>
+    </div>
+    <div class="card">
+        <h1>Puzzle <span th:text="${puzzleNumber}">1</span> Result</h1>
+
+        <div th:class="${isCorrect ? 'result-box correct' : 'result-box incorrect'}">
+            <h2 th:text="${isCorrect ? 'Correct!' : 'Incorrect!'}">Result</h2>
+            <p>You earned <span th:text="${points}">0</span> points.</p>
+        </div>
+
+        <div class="answer-box">
+            <h3>The question was:</h3>
+            <p th:text="${puzzle.question}">Question goes here?</p>
+
+            <h3>The correct answer is:</h3>
+            <div class="correct-answer">
+                <span th:if="${correctOption == 'A'}" th:text="'A: ' + ${puzzle.optionA}"></span>
+                <span th:if="${correctOption == 'B'}" th:text="'B: ' + ${puzzle.optionB}"></span>
+                <span th:if="${correctOption == 'C'}" th:text="'C: ' + ${puzzle.optionC}"></span>
+                <span th:if="${correctOption == 'D'}" th:text="'D: ' + ${puzzle.optionD}"></span>
+            </div>
+        </div>
+
+        <a th:if="${!isLastPuzzle}" href="/next-puzzle" class="primary-button">Next Puzzle</a>
+        <a th:if="${isLastPuzzle}" href="/results" class="primary-button">See Final Results</a>
+    </div>
+</div>
+</body>
+</html>

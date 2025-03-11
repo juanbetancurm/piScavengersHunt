@@ -1,0 +1,264 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+}
+
+body {
+    background-color: #F3F2F2;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+.card {
+    background-color: #DBE2E5;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+h1 {
+    color: #468660;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+h2 {
+    color: #538594;
+    margin-bottom: 1rem;
+}
+
+h3 {
+    color: #A1A7A5;
+    margin-bottom: 0.5rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+.institution-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.institution-header img {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 0.5rem;
+}
+
+.institution-label {
+    font-size: 1rem;
+    color: #538594;
+    font-weight: 500;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #538594;
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #A1A7A5;
+    border-radius: 4px;
+    font-size: 1rem;
+    background-color: #FFFFFF;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.primary-button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #468660;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.primary-button:hover {
+    background-color: #538594;
+}
+
+.secondary-button {
+    display: block;
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #E9E9E9;
+    color: #333;
+    border: 1px solid #A1A7A5;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.secondary-button:hover {
+    background-color: #DBE2E5;
+}
+
+/* Hint Box Styles */
+.hint-box {
+    background-color: #F3F2F2;
+    border-left: 4px solid #538594;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Question and Answer Styles */
+.question-box {
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+}
+
+.options-group {
+    margin-bottom: 1.5rem;
+}
+
+.option {
+    margin-bottom: 1rem;
+    padding: 0.8rem;
+    border: 1px solid #A1A7A5;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    background-color: #FFFFFF;
+}
+
+.option:hover {
+    background-color: #E9E9E9;
+}
+
+.option input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+/* Result Styles */
+.result-box {
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.result-box.correct {
+    background-color: #F3F2F2;
+    border-left: 4px solid #468660;
+}
+
+.result-box.incorrect {
+    background-color: #F3F2F2;
+    border-left: 4px solid #8D584D;
+}
+
+.answer-box {
+    background-color: #FFFFFF;
+    padding: 1.5rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+.error-message {
+    color: #FFFFFF;
+    background-color: #8D584D;
+    padding: 0.8rem;
+    border-radius: 4px;
+    margin-bottom: 1.5rem;
+}
+
+/* Results Page Styles */
+.result-summary {
+    margin-bottom: 2rem;
+}
+
+.score-box {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1.5rem;
+}
+
+.score-item {
+    flex: 1;
+    text-align: center;
+    padding: 1rem;
+    background-color: #E9E9E9;
+    border-radius: 4px;
+    margin: 0 0.5rem;
+}
+
+.score-label {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #538594;
+}
+
+.score-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #468660;
+}
+
+.congratulations {
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.correct-answer {
+    font-weight: bold;
+    color: #468660;
+    margin-top: 0.5rem;
+    display: block;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .score-box {
+        flex-direction: column;
+    }
+
+    .score-item {
+        margin: 0.5rem 0;
+    }
+}

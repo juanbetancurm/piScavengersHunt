@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PiDay IJR</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div class="container">
+    <div class="institution-header">
+        <img src="/images/logo.png" alt="Instituto Jorge Robledo Logo">
+        <div class="institution-label">Instituto Jorge Robledo - Colegio laico, mixto y privado</div>
+    </div>
+    <div class="card">
+        <h1>Game Completed!</h1>
+
+        <div class="result-summary">
+            <h2>Team: <span th:text="${team.teamName}">Team Name</span></h2>
+            <h3>Grade/Class: <span th:text="${team.gradeClass}">Grade/Class</span></h3>
+
+            <div class="score-box">
+                <div class="score-item">
+                    <div class="score-label">Total Points:</div>
+                    <div class="score-value" th:text="${totalPoints}">0</div>
+                </div>
+
+                <div class="score-item">
+                    <div class="score-label">Total Time:</div>
+                    <div class="score-value" th:text="${totalTime}">0 min 0 sec</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="congratulations">
+            <h2>Congratulations!</h2>
+            <p>You've completed all the puzzles in the Pi Adventure.</p>
+            <p>Thank you for participating!</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
