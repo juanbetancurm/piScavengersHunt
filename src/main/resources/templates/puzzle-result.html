@@ -10,7 +10,7 @@
 <div class="container">
     <div class="institution-header">
         <img src="/images/logo.png" alt="Instituto Jorge Robledo Logo">
-        <div class="institution-label">Instituto Jorge Robledo - Colegio laico, mixto y privado</div>
+        <div class="app-title">IJR PiPuzzle 2025</div>
     </div>
     <div class="card">
         <h1>Puzzle <span th:text="${puzzleNumber}">1</span> Result</h1>
@@ -26,10 +26,10 @@
 
             <h3>The correct answer is:</h3>
             <div class="correct-answer">
-                <span th:if="${correctOption == 'A'}" th:text="'A: ' + ${puzzle.optionA}"></span>
-                <span th:if="${correctOption == 'B'}" th:text="'B: ' + ${puzzle.optionB}"></span>
-                <span th:if="${correctOption == 'C'}" th:text="'C: ' + ${puzzle.optionC}"></span>
-                <span th:if="${correctOption == 'D'}" th:text="'D: ' + ${puzzle.optionD}"></span>
+                <span th:if="${correctOption == 'A'}" th:text="'A: ' + ${puzzle.optionA}">A: Answer</span>
+                <span th:if="${correctOption == 'B'}" th:text="'B: ' + ${puzzle.optionB}">B: Answer</span>
+                <span th:if="${correctOption == 'C'}" th:text="'C: ' + ${puzzle.optionC}">C: Answer</span>
+                <span th:if="${correctOption == 'D'}" th:text="'D: ' + ${puzzle.optionD}">D: Answer</span>
             </div>
         </div>
 
@@ -37,5 +37,39 @@
         <a th:if="${isLastPuzzle}" href="/results" class="primary-button">See Final Results</a>
     </div>
 </div>
+<footer>
+    <div class="institution-label">Instituto Jorge Robledo - Colegio laico, mixto y privado</div>
+</footer>
+
+<script th:inline="javascript">
+
+    // This script to ensure that the correct answer is always displayed
+    document.addEventListener('DOMContentLoaded', function() {
+        const correctOption = /*[[${correctOption}]]*/ 'A';
+        const correctAnswerDiv = document.querySelector('.correct-answer');
+
+        if (correctAnswerDiv && correctOption) {
+            let answerText = '';
+
+            switch(correctOption) {
+                case 'A':
+                    answerText = 'A: ' + /*[[${puzzle.optionA}]]*/ 'Option A';
+                    break;
+                case 'B':
+                    answerText = 'B: ' + /*[[${puzzle.optionB}]]*/ 'Option B';
+                    break;
+                case 'C':
+                    answerText = 'C: ' + /*[[${puzzle.optionC}]]*/ 'Option C';
+                    break;
+                case 'D':
+                    answerText = 'D: ' + /*[[${puzzle.optionD}]]*/ 'Option D';
+                    break;
+            }
+
+            correctAnswerDiv.textContent = answerText;
+        }
+    });
+
+</script>
 </body>
 </html>
