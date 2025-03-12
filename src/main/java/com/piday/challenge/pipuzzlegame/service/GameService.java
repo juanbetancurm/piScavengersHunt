@@ -13,8 +13,8 @@ import org.springframework.stereotype.Service;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class GameService {
@@ -34,9 +34,36 @@ public class GameService {
 
     public Team registerTeam(String teamName, String gradeClass, String memberNames) {
         Team team = new Team(teamName, gradeClass, memberNames);
+
+        String randomSequence = generateRandomPuzzleSequence();
+        team.setPuzzleSequence(randomSequence);
+
         return teamRepository.save(team);
     }
 
+    private String generateRandomPuzzleSequence() {
+        List<Integer> sequence = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
+        Collections.shuffle(sequence);
+        return String.join(",", sequence.stream()
+                .map(String::valueOf)
+                .collect(Collectors.toList()));
+    }
+
+    // Method to get puzzle based on team's sequence
+    public Puzzle getPuzzleByTeamAndPosition(Team team, int position) {
+        if (team.getPuzzleSequence() == null) {
+            // Fallback to default sequence if not set
+            return getPuzzleBySequence(position);
+        }
+
+        String[] puzzleSequence = team.getPuzzleSequence().split(",");
+        if (position <= 0 || position > puzzleSequence.length) {
+            throw new RuntimeException("Invalid puzzle position");
+        }
+
+        int puzzleNumber = Integer.parseInt(puzzleSequence[position - 1]);
+        return getPuzzleBySequence(puzzleNumber);
+    }
     public Team findTeam(Long teamId) {
         return teamRepository.findById(teamId).orElse(null);
     }

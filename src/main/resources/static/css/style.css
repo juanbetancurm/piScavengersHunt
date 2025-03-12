@@ -130,10 +130,97 @@ textarea:focus {
     outline: none;
 }
 
+input[type="text"],
+textarea,
+select {
+    display: block;
+    width: 100%;
+    height: auto;
+    line-height: 1.5;
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+
 textarea {
     resize: vertical;
     min-height: 100px;
 }
+
+/* Select dropdown styling */
+/* Select dropdown enhanced styling */
+select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid #A1A7A5;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background-color: #FFFFFF;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    appearance: none; /* Remove default browser styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    height: 52px; /* Match the height of text inputs */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23538594' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1em;
+    color: #333;
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+    display: block; /* Ensure it takes full width */
+    margin-bottom: 0;
+}
+
+select:focus {
+    border-color: #468660;
+    box-shadow: 0 0 0 3px rgba(70, 134, 96, 0.25), 0 4px 8px rgba(0,0,0,0.15);
+    outline: none;
+    transform: translateY(-2px);
+}
+
+select:hover {
+    border-color: #538594;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Give the dropdown options better styling */
+select option {
+    padding: 1rem;
+    font-size: 1.05rem;
+    background-color: #FFFFFF;
+    color: #333333;
+}
+
+/* Style the first disabled option differently */
+select option[disabled] {
+    color: #A1A7A5;
+    font-style: italic;
+}
+
+/* Ensure consistent styling across browsers */
+@-moz-document url-prefix() {
+    select {
+        padding-right: 2.5rem; /* More space for Firefox */
+    }
+}
+
+/* IE/Edge fixes */
+select::-ms-expand {
+    display: none;
+}
+select::-ms-value {
+    color: #333;
+    background-color: #FFFFFF;
+}
+
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+
 
 .primary-button {
     display: block;
@@ -415,4 +502,216 @@ textarea {
     .congratulations p {
         font-size: 1.1rem;
     }
+}
+
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    select {
+        -webkit-padding-end: 2.5rem;
+        min-height: 52px; /* Ensure consistent height */
+    }
+}
+
+/* Leaderboard Styles */
+.leaderboard {
+    overflow-x: auto;
+    margin-bottom: 2rem;
+}
+
+.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.5rem 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(161, 167, 165, 0.2);
+}
+
+.leaderboard-table th {
+    background-color: #468660;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.leaderboard-table tr:nth-child(even) {
+    background-color: rgba(233, 233, 233, 0.5);
+}
+
+.leaderboard-table tr:hover {
+    background-color: rgba(70, 134, 96, 0.1);
+}
+
+.leaderboard-table td:first-child {
+    font-weight: 700;
+    text-align: center;
+}
+
+
+
+/* Custom select wrapper */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Base styling for select */
+.select-wrapper select {
+    width: 100%;
+    padding: 0.75rem 2.5rem 0.75rem 1rem; /* Adjust padding - more right padding for arrow */
+    border: 2px solid #A1A7A5;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    background-color: #FFFFFF;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    height: auto; /* Allow height to adjust to content */
+    min-height: 52px; /* Set minimum height */
+    line-height: 1.5;
+    box-sizing: border-box;
+    text-overflow: ellipsis; /* Add ellipsis for overflow */
+    white-space: nowrap; /* Prevent wrapping */
+    overflow: hidden; /* Hide overflow */
+    display: block;
+    text-align: left; /* Ensure text alignment */
+}
+
+/* Custom dropdown arrow - positioned farther right */
+.select-wrapper::after {
+    content: '';
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 8px solid #538594;
+    pointer-events: none;
+}
+
+/* Focus and hover effects */
+.select-wrapper select:focus {
+    border-color: #468660;
+    box-shadow: 0 0 0 3px rgba(70, 134, 96, 0.25), 0 4px 8px rgba(0,0,0,0.15);
+    outline: none;
+}
+
+.select-wrapper select:hover {
+    border-color: #538594;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+/* Style for options */
+.select-wrapper select option {
+    padding: 10px 15px; /* More padding in options */
+    white-space: normal; /* Allow text to wrap in options */
+    min-height: 30px; /* Minimum height for options */
+    line-height: 1.5;
+}
+.select-wrapper select option[disabled] {
+    color: #666;
+}
+
+
+/* Hide default arrow in IE/Edge */
+.select-wrapper select::-ms-expand {
+    display: none;
+}
+
+/* Firefox specific fix for dropdown */
+@-moz-document url-prefix() {
+    .select-wrapper select {
+        text-indent: 0.01px;
+        text-overflow: '';
+        padding-right: 3rem;
+    }
+}
+@-moz-document url-prefix() {
+    .select-wrapper select {
+        text-indent: 0;
+        padding-right: 3rem; /* More padding for Firefox */
+    }
+}
+
+/* Chrome/Safari specific adjustments */
+@media screen and (-webkit-min-device-pixel-ratio: 0) {
+    .select-wrapper select {
+        padding-right: 2.5rem;
+    }
+}
+
+/* Ensure select matches other form controls */
+.form-group select,
+.form-group input[type="text"],
+.form-group textarea {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.5rem;
+    padding: 3px;
+}
+
+/* Ensure all form controls have consistent styling */
+.form-group {
+    margin-bottom: 1.8rem;
+    width: 100%;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #538594;
+    font-weight: 600;
+}
+
+/* Normalize input height and styling */
+input[type="text"],
+textarea,
+.select-wrapper select {
+    height: auto;
+    min-height: 52px;
+    box-sizing: border-box;
+
+}
+
+/* Internet Explorer specific fix */
+select::-ms-value {
+    padding-left: 1rem;
+    background-color: transparent;
+    color: #333;
+}
+
+/* Mobile browser adjustments */
+@media (max-width: 768px) {
+    .select-wrapper select {
+        font-size: 16px; /* Prevent zoom on focus in iOS */
+        padding: 0.75rem 3rem 0.75rem 1rem; /* More padding on mobile */
+    }
+}
+
+/* Ensure option text visibility */
+select option {
+    font-size: 1rem;
+    padding: 0.5rem;
+}
+
+/* Ensure the select has enough width */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
 }

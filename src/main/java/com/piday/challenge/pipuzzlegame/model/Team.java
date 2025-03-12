@@ -25,6 +25,9 @@ public class Team {
     @Column(name = "end_time")
     private LocalDateTime endTime;
 
+    //Puzzle sequence
+    @Column(name = "puzzle_sequence", length = 100)
+    private String puzzleSequence;
     // Constructors
     public Team() {
     }
@@ -83,5 +86,12 @@ public class Team {
 
     public void setEndTime(LocalDateTime endTime) {
         this.endTime = endTime;
+    }
+
+    public String getPuzzleSequence() {
+        return puzzleSequence;
+    }
+    public void setPuzzleSequence(String puzzleSequence) {
+        this.puzzleSequence = puzzleSequence;
     }
 }

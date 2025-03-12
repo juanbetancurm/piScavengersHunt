@@ -3,6 +3,7 @@ package com.piday.challenge.pipuzzlegame.controller;
 
 import com.piday.challenge.pipuzzlegame.model.Team;
 import com.piday.challenge.pipuzzlegame.service.GameService;
+import com.piday.challenge.pipuzzlegame.service.LeaderboardService;
 import com.piday.challenge.pipuzzlegame.service.ScoreService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,11 +19,14 @@ public class ResultController {
 
     private final GameService gameService;
     private final ScoreService scoreService;
+    private final LeaderboardService leaderboardService;
 
     @Autowired
-    public ResultController(GameService gameService, ScoreService scoreService) {
+    public ResultController(GameService gameService, ScoreService scoreService,
+                            LeaderboardService leaderboardService) {
         this.gameService = gameService;
         this.scoreService = scoreService;
+        this.leaderboardService = leaderboardService;
     }
 
     @GetMapping("/results")
@@ -37,6 +41,9 @@ public class ResultController {
         Duration totalTime = gameService.getTotalTime(teamId);
         String formattedTime = scoreService.formatDuration(totalTime);
 
+        // Save results to leaderboard
+        leaderboardService.saveTeamResults(team, totalPoints, totalTime);
+
         model.addAttribute("team", team);
         model.addAttribute("totalPoints", totalPoints);
         model.addAttribute("totalTime", formattedTime);
@@ -44,10 +51,9 @@ public class ResultController {
         return "results";
     }
 
-    @GetMapping("/new-game")
-    public String startNewGame(HttpSession session) {
-        // Clear session
-        session.invalidate();
-        return "redirect:/";
+    @GetMapping("/leaderboard")
+    public String showLeaderboard(Model model) {
+        model.addAttribute("entries", leaderboardService.getLeaderboard());
+        return "leaderboard";
     }
 }
