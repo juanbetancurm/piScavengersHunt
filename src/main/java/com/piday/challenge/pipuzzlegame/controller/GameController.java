@@ -30,22 +30,22 @@ public class GameController {
             return "redirect:/";
         }
 
-        int currentPuzzleSequence = gameService.getCurrentPuzzleSequence(teamId);
+        int currentPosition = (int) session.getAttribute("currentPuzzleSequence");
+        Team team = gameService.findTeam(teamId);
 
-        if (currentPuzzleSequence > 5) {
+        if (currentPosition > 5) {
             // All puzzles completed, go to results
             gameService.completeGame(teamId);
             return "redirect:/results";
         }
 
-        Puzzle puzzle = gameService.getPuzzleBySequence(currentPuzzleSequence);
+        Puzzle puzzle = gameService.getPuzzleByTeamAndPosition(team, currentPosition);
         model.addAttribute("locationHint", puzzle.getLocationHint());
-        model.addAttribute("puzzleNumber", currentPuzzleSequence);
-
-        session.setAttribute("currentPuzzleSequence", currentPuzzleSequence);
+        model.addAttribute("puzzleNumber", currentPosition);
 
         return "code-hint";
     }
+
 
     @GetMapping("/code-input")
     public String showCodeInput(HttpSession session, Model model) {
@@ -71,17 +71,18 @@ public class GameController {
             return "redirect:/";
         }
 
-        int currentPuzzleSequence = (int) session.getAttribute("currentPuzzleSequence");
+        int currentPosition = (int) session.getAttribute("currentPuzzleSequence");
+        Team team = gameService.findTeam(teamId);
+        Puzzle puzzle = gameService.getPuzzleByTeamAndPosition(team, currentPosition);
 
-        if (gameService.validateCode(code, currentPuzzleSequence)) {
+        if (code.equalsIgnoreCase(puzzle.getCode())) {
             // Code is correct, initialize puzzle progress and move to puzzle
-            Team team = gameService.findTeam(teamId);
-            gameService.initiatePuzzleProgress(team, currentPuzzleSequence);
+            gameService.initiatePuzzleProgress(team, puzzle.getSequenceNumber());
             return "redirect:/puzzle";
         } else {
             // Code is incorrect, show error message
             model.addAttribute("error", "Incorrect code. Please try again.");
-            model.addAttribute("puzzleNumber", currentPuzzleSequence);
+            model.addAttribute("puzzleNumber", currentPosition);
             return "code-input";
         }
     }
@@ -93,14 +94,18 @@ public class GameController {
             return "redirect:/";
         }
 
-        int currentPuzzleSequence = (int) session.getAttribute("currentPuzzleSequence");
-        Puzzle puzzle = gameService.getPuzzleBySequence(currentPuzzleSequence);
+        int currentPosition = (int) session.getAttribute("currentPuzzleSequence");
+        Team team = gameService.findTeam(teamId);
+
+        // Get the puzzle based on the team's custom sequence and current position
+        Puzzle puzzle = gameService.getPuzzleByTeamAndPosition(team, currentPosition);
 
         model.addAttribute("puzzle", puzzle);
-        model.addAttribute("puzzleNumber", currentPuzzleSequence);
+        model.addAttribute("puzzleNumber", currentPosition);
 
         return "puzzle";
     }
+
 
     @PostMapping("/submit-answer")
     public String submitAnswer(
@@ -113,22 +118,25 @@ public class GameController {
             return "redirect:/";
         }
 
-        int currentPuzzleSequence = (int) session.getAttribute("currentPuzzleSequence");
+        int currentPosition = (int) session.getAttribute("currentPuzzleSequence");
+        Team team = gameService.findTeam(teamId);
 
-        // Submit the answer and get the result
-        TeamProgress progress = gameService.submitAnswer(teamId, currentPuzzleSequence, selectedOption);
+        // Get the puzzle based on the team's custom sequence and current position
+        Puzzle puzzle = gameService.getPuzzleByTeamAndPosition(team, currentPosition);
+
+        // Submit the answer for the correct puzzle
+        TeamProgress progress = gameService.submitAnswer(teamId, puzzle.getSequenceNumber(), selectedOption);
 
         // Prepare the puzzle result model
-        Puzzle puzzle = progress.getPuzzle();
         model.addAttribute("puzzle", puzzle);
         model.addAttribute("selectedOption", selectedOption);
         model.addAttribute("isCorrect", progress.getIsCorrect());
         model.addAttribute("points", progress.getPoints());
         model.addAttribute("correctOption", puzzle.getCorrectOption());
-        model.addAttribute("puzzleNumber", currentPuzzleSequence);
+        model.addAttribute("puzzleNumber", currentPosition);
 
         // Determine if this was the last puzzle
-        boolean isLastPuzzle = currentPuzzleSequence >= 5;
+        boolean isLastPuzzle = currentPosition >= 5;
         model.addAttribute("isLastPuzzle", isLastPuzzle);
 
         if (isLastPuzzle) {
