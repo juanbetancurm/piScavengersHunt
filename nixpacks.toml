@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["..."]
+
+[phases.build]
+cmds = [
+    "chmod +x ./mvnw",
+    "./mvnw clean package spring-boot:repackage -DskipTests"
+]
+
+[start]
+cmd = "java -jar target/pi-puzzle-game-0.0.1-SNAPSHOT.jar"
