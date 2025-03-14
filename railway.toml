@@ -1,7 +1,9 @@
 [build]
 builder = "NIXPACKS"
-buildCommand = "./mvnw clean package spring-boot:repackage -DskipTests"
+nixpacksVersion = "1.11.0"
 
 [deploy]
-startCommand = "java -jar target/pi-puzzle-game-0.0.1-SNAPSHOT.jar"
+startCommand = "java -jar target/*.jar"
+healthcheckPath = "/"
 restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
