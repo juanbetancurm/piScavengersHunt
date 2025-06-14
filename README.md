@@ -115,7 +115,8 @@ The game automatically adapts mathematical complexity based on student grade lev
 ## 🔗 Learn More
 
 Check out an animation of the Pi-Day Scavengers Hunt on LinkedIn:
-[![LinkedIn Post](https://www.linkedin.com/posts/juanjbetancur852_education-mathematics-piday-activity-7330756196410261505-pzEX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAyiydMB5-J-s8kL7yP32ISJCWjio3_1QsU)
+
+[![LinkedIn Post](https://www.linkedin.com/posts/juanjbetancur852_education-mathematics-piday-activity-7330756196410261505-pzEX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAyiydMB5-J-s8kL7yP32ISJCWjio3_1QsU).
 
 ---
 
