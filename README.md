@@ -1,4 +1,4 @@
-# 🥧 Pi Day Challenge
+# 𝛑 Pi Day Challenge
 ### *Where Mathematics Meets Adventure!*
 
 **An interactive treasure hunt that transforms Pi Day into an exciting campus-wide mathematical adventure.**
