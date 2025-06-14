@@ -4,6 +4,13 @@
 **An interactive treasure hunt that transforms Pi Day into an exciting campus-wide mathematical adventure.**
 
 ---
+## 🎬 See It In Action
+
+[![Pi Day Challenge Demo](https://img.shields.io/badge/LinkedIn-Watch%20Demo-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/posts/juanjbetancur852_education-mathematics-piday-activity-7330756196410261505-pzEX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAyiydMB5-J-s8kL7yP32ISJCWjio3_1QsU)
+
+*Click above to watch the full application demo and see students engaging with the Pi Day Challenge!*
+
+---
 
 ## 🎯 What is Pi Day Challenge?
 
@@ -110,13 +117,6 @@ The game automatically adapts mathematical complexity based on student grade lev
 3. Follow location hints to find codes around campus
 4. Solve Pi-related puzzles to earn points
 5. Check the leaderboard to see your progress!
-
----
-## 🔗 Learn More
-
-Check out an animation of the Pi-Day Scavengers Hunt on LinkedIn:
-
-[![LinkedIn Post]([https://img.shields.io/badge/LinkedIn-See%20Demo-blue?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/posts/juanjbetancur852_this-engaging-educational-game-developed-activity-7325703793843597314-Md0S?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAyiydMB5-J-s8kL7yP32ISJCWjio3_1QsU](https://www.linkedin.com/posts/juanjbetancur852_education-mathematics-piday-activity-7330756196410261505-pzEX?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAyiydMB5-J-s8kL7yP32ISJCWjio3_1QsU))
 
 ---
 
